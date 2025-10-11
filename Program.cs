@@ -99,7 +99,8 @@ internal static class Program {
         // U+0100 -> U+017F: Latin Extended-A.
         chars.AddRange(GetUnicodeCharsInRange(0x0100, 0x017F));
 
-        // U+01A0 -> U+01A1 & U+01AF -> U+01B0: Latin Extended-B. (skipped)
+        // Latin Extended-B. 0180–024F. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x0180, 0x024F));
 
         // U+1EA0 -> U+1EF9: Latin Extended Additional, additional letters for Vietnamese (skipped)
 
