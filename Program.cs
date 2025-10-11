@@ -119,17 +119,22 @@ internal static class Program {
         // General Punctuation
         // 1. Spaces. 2000 -> 200A (skipped)
         // 2. Format characters (skipped)
-        // 3. Dashes. 2010 -> 2015  (skipped)
-        // 4. General punctuation. 2016 -> 2017 (skipped)
+        // 3. Dashes. 2010 -> 2015
+        chars.AddRange(GetUnicodeCharsInRange(0x2010, 0x2015));
+        // 4. General punctuation. 2016 -> 2017
+        chars.AddRange(GetUnicodeCharsInRange(0x2016, 0x2017));
         // 5. Quotation marks and apostrophe. 2018 -> 201F
         chars.AddRange(GetUnicodeCharsInRange(0x2018, 0x201F));
-        // 6. General punctuation. 2020 -> 2027 (skipped)
+        // 6. General punctuation. 2020 -> 2027
+        chars.AddRange(GetUnicodeCharsInRange(0x2020, 0x2027));
         // 7. Separators (skipped)
         // 8. Format characters (skipped)
         // 9. Space. 202F (skipped)
-        // 10. General punctuation. 2030 -> 2038 (skipped)
+        // 10.General punctuation. 2030-> 2038
+        chars.AddRange(GetUnicodeCharsInRange(0x2030, 0x2038));
         // 11. Quotation marks. 2039 -> 203A (skipped)
-        // 12. General punctuation. 203B (skipped)
+        // 12. General punctuation. 203B
+        chars.AddRange(GetUnicodeCharsInRange(0x203B, 0x203B));
         // 13. Double punctuation for vertical text. 203C (skipped)
         // 14. General punctuation. 203D -> 2044 (skipped)
         // 15. Brackets. 2045 -> 2046 (skipped)
