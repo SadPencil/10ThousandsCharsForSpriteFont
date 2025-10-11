@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System.Diagnostics;
 using System.Text;
 
@@ -236,7 +236,12 @@ internal static class Program {
         chars.AddRange(GetUnicodeCharsInRange(0x2642, 0x2642));
 
         // Letterlike Symbols. 2100–214F. Includes all.
-        chars.AddRange(GetUnicodeCharsInRange(0x2100, 0x214F));
+        // chars.AddRange(GetUnicodeCharsInRange(0x2100, 0x214F));
+
+        // Letterlike Symbols. Only add ℃ (U+2103), № (U+2116) in GB2312. Also, add ℉(U+2109)
+        chars.AddRange(GetUnicodeCharsInRange(0x2103, 0x2103));
+        chars.AddRange(GetUnicodeCharsInRange(0x2109, 0x2109));
+        chars.AddRange(GetUnicodeCharsInRange(0x2116, 0x2116));
 
         // CJK Symbols and Punctuation. 3000–303F. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x3000, 0x303F));
