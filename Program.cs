@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.VisualBasic;
+using System.Diagnostics;
 using System.Text;
 
 namespace TenThousandsCharsForSpriteFont;
@@ -87,6 +88,11 @@ internal static class Program {
         return chars;
     }
 
+    private static IReadOnlyList<char> GetYiJianDuiDuoFanChars() {
+        IReadOnlyList<char> chars = GetCharactersFromTextFile("YiJianDuiDuoFan.utf8.txt", new UTF8Encoding(false));
+        return chars;
+    }
+
     private static IReadOnlyList<char> GetHansChars() {
         List<char> chars = [];
 
@@ -109,7 +115,48 @@ internal static class Program {
         return chars;
     }
 
+    private static IReadOnlyList<char> GetHantChars() {
+        IReadOnlyList<char> hansChars = GetHansChars();
+
+        List<Char> hantChars = [];
+        foreach (char c in hansChars) {
+            string hantStr = Strings.StrConv(c.ToString(), VbStrConv.TraditionalChinese, LocaleID: 2052);
+            Debug.Assert(hantStr.Length == 1, "Converted Hant character length should be 1");
+            char hantChar = hantStr[0];
+            hantChars.Add(hantStr[0]);
+        }
+
+        hantChars.AddRange(GetYiJianDuiDuoFanChars());
+
+        hantChars = hantChars.Distinct().ToList();
+
+        {
+            var exclusiveHansChars = hansChars.Where(c => !hantChars.Contains(c)).ToList();
+            Debug.WriteLine($"{exclusiveHansChars.Count} zh-Hans exclusive Han characters: " + string.Join(string.Empty, exclusiveHansChars));
+        }
+
+        {
+            var exclusiveHantChars = hantChars.Where(c => !hansChars.Contains(c)).ToList();
+            Debug.WriteLine($"{exclusiveHantChars.Count} zh-Hant exclusive Han characters: " + string.Join(string.Empty, exclusiveHantChars));
+        }
+
+        {
+            var sharedChars = hantChars.Intersect(hansChars).ToList();
+            Debug.WriteLine($"{sharedChars.Count} shared Han characters between zh-Hans and zh-Hant: " + string.Join(string.Empty, hantChars.Intersect(hansChars)));
+        }
+
+        return hantChars;
+    }
+
     private static void Main(string[] args) {
+        bool zhHant = args.Length > 0 && args[0] == "--zh-Hant";
+        if (zhHant) {
+            Console.WriteLine("Generating characters for zh-Hant...");
+        }
+        else {
+            Console.WriteLine("Generating characters for zh-Hans...");
+        }
+
         List<char> chars = [];
 
         // U+0020 -> U+007F: Basic Latin.
@@ -251,11 +298,22 @@ internal static class Program {
             }
         }
 
-        // Add Chinese (Simplified) characters
-        chars.AddRange(GetHansChars());
-
-        // Remove duplicates again
-        chars = chars.Distinct().ToList();
+        if (!zhHant) {
+            // Add Chinese (Simplified) characters
+            Console.WriteLine("Before adding Hans characters, total characters: " + chars.Count);
+            var hansChars = GetHansChars();
+            chars.AddRange(hansChars);
+            chars = chars.Distinct().ToList();
+            Console.WriteLine("After adding Hans characters, total characters: " + chars.Count);
+        }
+        else {
+            // Add Chinese (Traditional) characters
+            Console.WriteLine("Before adding Hant characters, total characters: " + chars.Count);
+            var hantChars = GetHantChars();
+            chars.AddRange(hantChars);
+            chars = chars.Distinct().ToList();
+            Console.WriteLine("After adding Hant characters, total characters: " + chars.Count);
+        }
 
         // Output the character count to console
         Console.WriteLine($"Total characters: {chars.Count}");
