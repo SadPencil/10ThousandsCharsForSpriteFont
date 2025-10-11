@@ -150,13 +150,21 @@ internal static class Program {
         // 24. Format characters (skipped)
         // 25. Deprecated (skipped)
 
-        // U+2460 -> U+2469 & U+2160 -> U+216B & U+2170 -> U+2179: Enclosed CJK Letters and Months.
-        chars.AddRange(GetUnicodeCharsInRange(0x2460, 0x2469));
+        // Enclosed CJK Letters and Months. Only includes 3220 -- 325F and range 327F -- 32FE, so Hangul characters are excluded.
+        chars.AddRange(GetUnicodeCharsInRange(0x3220, 0x325F));
+        chars.AddRange(GetUnicodeCharsInRange(0x327F, 0x32FE));
+
         // Number Forms. 2150 -- 218B. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x2150, 0x218B));
 
-        // U+2605 -> U+2606: Miscellaneous Symbols.
+        //// Miscellaneous Symbols. 2600–26FF. Includes all.
+        //chars.AddRange(GetUnicodeCharsInRange(0x2600, 0x26FF));
+
+        // Only introduce these miscellaneous symbols. (GB2312)
         chars.AddRange(GetUnicodeCharsInRange(0x2605, 0x2606));
+        chars.AddRange(GetUnicodeCharsInRange(0x2640, 0x2640));
+        chars.AddRange(GetUnicodeCharsInRange(0x2642, 0x2642));
+
         // Letterlike Symbols. 2100–214F. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x2100, 0x214F));
 
@@ -169,8 +177,32 @@ internal static class Program {
         // U+30A0 -> U+30FF: Katakana. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x30A0, 0x30FF));
 
+        // Spacing Modifier Letters. 02B0–02FF. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x02B0, 0x02FF));
+
+        // Mathematical Operators. 2200–22FF. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2200, 0x22FF));
+
+        // Geometric Shapes. 25A0–25FF. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x25A0, 0x25FF));
+
+        // Enclosed Alphanumerics. 2460–24FF. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2460, 0x24FF));
+
         // Bopomofo. 3105 -- 312F. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x3105, 0x312F));
+
+        // Box Drawing. 2500–257F. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2500, 0x257F));
+
+        // Arrows. 2190–21FF. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2190, 0x21FF));
+
+        //// Miscellaneous Technical. 2300–23FF. Includes all.
+        //chars.AddRange(GetUnicodeCharsInRange(0x2300, 0x23FF));
+
+        // Only add ⌒ (U+2312) in GB2312
+        chars.AddRange(GetUnicodeCharsInRange(0x2312, 0x2312));
 
         // There should be no duplicate characters. Throw if there are any.
         {
@@ -187,10 +219,18 @@ internal static class Program {
 
         // U+4E00 -> U+9FFF: CJK Unified Ideographs. Can't include all of them. Will include a selected subset.
 
-        IReadOnlyList<char> unicodeHans = GetUnicode1994HanCharacters();
+        // All non-Han characters should already be included above.
+        {
+            IReadOnlyList<char> unicodeHans = GetUnicode1994HanCharacters();
+            IReadOnlyList<char> gb2312NonHanChars = GetGB2312Chars().Where(c => !unicodeHans.Contains(c)).ToList();
+            IReadOnlyList<char> notIncludedChars = gb2312NonHanChars.Where(c => !chars.Contains(c)).ToList();
+            if (notIncludedChars.Count > 0) {
+                throw new Exception($"There are {notIncludedChars.Count} non-Han characters in GB2312 that haven't been added: {string.Join(", ", notIncludedChars.Select(DisplayCharacter))}");
+            }
+        }
 
-        // Add GB2312 characters. This includes some characters already added above.
-        chars.AddRange(unicodeHans.Intersect(GetGB2312Chars()));
+        // Add GB2312 characters. This includes some non Han characters.
+        chars.AddRange(GetGB2312Chars());
 
         // Add 3500 level-1 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表. This includes some characters already added above.
         chars.AddRange(unicodeHans.Intersect(GetTongYongGuiFanHanZiBiaoLevelOneChars()));
