@@ -69,3 +69,6 @@ https://www.unicode.org/Public/1.1-Update/CJKXREF.TXT
 **Unicode 汉字交叉参照表（1.1 版）**
 
 https://www.unicode.org/Public/1.1-Update/CJKXREF.TXT
+
+### Qi Fen Fei Yi Yi Dui Ying Jian Fan Zi Yan Jiu Cheng Guo Bi Jiao Biao
+《七份非一一对应简繁字研究成果比较表》陈明然 第十二次汉字书同文学术研讨会
