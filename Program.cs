@@ -87,6 +87,28 @@ internal static class Program {
         return chars;
     }
 
+    private static IReadOnlyList<char> GetHansChars() {
+        List<char> chars = [];
+
+        IReadOnlyList<char> unicodeHanChars = GetUnicode1994HanCharacters();
+
+        // Add GB2312 characters
+        chars.AddRange(unicodeHanChars.Intersect(GetGB2312Chars()));
+
+        // Add 3500 level-1 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表.
+        chars.AddRange(unicodeHanChars.Intersect(GetTongYongGuiFanHanZiBiaoLevelOneChars()));
+
+        // Add 3000 level-2 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表
+        chars.AddRange(unicodeHanChars.Intersect(GetTongYongGuiFanHanZiBiaoLevelTwoChars()));
+
+        // Add 1605 level-3 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表
+        chars.AddRange(unicodeHanChars.Intersect(GetTongYongGuiFanHanZiBiaoLevelThreeChars()));
+
+        chars = chars.Distinct().ToList();
+
+        return chars;
+    }
+
     private static void Main(string[] args) {
         List<char> chars = [];
 
@@ -229,17 +251,8 @@ internal static class Program {
             }
         }
 
-        // Add GB2312 characters. This includes some non Han characters.
-        chars.AddRange(GetGB2312Chars());
-
-        // Add 3500 level-1 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表. This includes some characters already added above.
-        chars.AddRange(unicodeHans.Intersect(GetTongYongGuiFanHanZiBiaoLevelOneChars()));
-
-        // Add 3000 level-2 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表. This includes some characters already added above.
-        chars.AddRange(unicodeHans.Intersect(GetTongYongGuiFanHanZiBiaoLevelTwoChars()));
-
-        // Add 1605 level-3 characters in Tong Yong Gui Fan Han Zi Biao 通用规范汉字表. This includes some characters already added above.
-        chars.AddRange(unicodeHans.Intersect(GetTongYongGuiFanHanZiBiaoLevelThreeChars()));
+        // Add Chinese (Simplified) characters
+        chars.AddRange(GetHansChars());
 
         // Remove duplicates again
         chars = chars.Distinct().ToList();
