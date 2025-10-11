@@ -1,0 +1,17 @@
+.vs/
+bin/
+obj/
+*.user
+appsettings.*.json
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# macOS
+.DS_Store
+._*
+
+# Jetbrain
+.idea/
