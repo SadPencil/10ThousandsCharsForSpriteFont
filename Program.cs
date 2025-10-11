@@ -159,6 +159,9 @@ internal static class Program {
         // U+30A0 -> U+30FF: Katakana. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x30A0, 0x30FF));
 
+        // Bopomofo. 3105 -- 312F. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x3105, 0x312F));
+
         // There should be no duplicate characters. Throw if there are any.
         {
             List<char> duplicateChars = chars
