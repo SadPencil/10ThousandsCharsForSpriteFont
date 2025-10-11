@@ -156,8 +156,8 @@ internal static class Program {
         // U+2605 -> U+2606: Miscellaneous Symbols.
         chars.AddRange(GetUnicodeCharsInRange(0x2605, 0x2606));
 
-        // U+3001 -> U+303F: CJK Symbols and Punctuation. Excludes 3000, 303E, 303F
-        chars.AddRange(GetUnicodeCharsInRange(0x3001, 0x303D));
+        // CJK Symbols and Punctuation. 3000–303F. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x3000, 0x303F));
 
         // U+3040 -> U+309F: Hiragana. Excludes reserved characters 3040, 3097, 3098. Excludes Voicing marks (3099-309C)
         chars.AddRange(GetUnicodeCharsInRange(0x3040, 0x309F, excluded: [0x3040, 0x3097, 0x3098, 0x3099, 0x309A, 0x309B, 0x309C]));
