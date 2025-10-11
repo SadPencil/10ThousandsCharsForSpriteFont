@@ -155,6 +155,8 @@ internal static class Program {
 
         // U+2605 -> U+2606: Miscellaneous Symbols.
         chars.AddRange(GetUnicodeCharsInRange(0x2605, 0x2606));
+        // Letterlike Symbols. 2100–214F. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2100, 0x214F));
 
         // CJK Symbols and Punctuation. 3000–303F. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x3000, 0x303F));
