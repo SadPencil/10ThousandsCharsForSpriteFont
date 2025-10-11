@@ -223,8 +223,9 @@ internal static class Program {
         chars.AddRange(GetUnicodeCharsInRange(0x3220, 0x325F));
         chars.AddRange(GetUnicodeCharsInRange(0x327F, 0x32FE));
 
-        // Number Forms. 2150 -- 218B. Includes all.
-        chars.AddRange(GetUnicodeCharsInRange(0x2150, 0x218B));
+        // Number Forms. 2150 -- 218B. Only includes 2160--216B and 2170--217F
+        chars.AddRange(GetUnicodeCharsInRange(0x2160, 0x216B));
+        chars.AddRange(GetUnicodeCharsInRange(0x2170, 0x217F));
 
         //// Miscellaneous Symbols. 2600–26FF. Includes all.
         //chars.AddRange(GetUnicodeCharsInRange(0x2600, 0x26FF));
@@ -270,7 +271,7 @@ internal static class Program {
         //// Miscellaneous Technical. 2300–23FF. Includes all.
         //chars.AddRange(GetUnicodeCharsInRange(0x2300, 0x23FF));
 
-        // Only add ⌒ (U+2312) in GB2312
+        // Miscellaneous Technical. Only add ⌒ (U+2312) in GB2312
         chars.AddRange(GetUnicodeCharsInRange(0x2312, 0x2312));
 
         // There should be no duplicate characters. Throw if there are any.
