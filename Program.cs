@@ -152,6 +152,8 @@ internal static class Program {
 
         // U+2460 -> U+2469 & U+2160 -> U+216B & U+2170 -> U+2179: Enclosed CJK Letters and Months.
         chars.AddRange(GetUnicodeCharsInRange(0x2460, 0x2469));
+        // Number Forms. 2150 -- 218B. Includes all.
+        chars.AddRange(GetUnicodeCharsInRange(0x2150, 0x218B));
 
         // U+2605 -> U+2606: Miscellaneous Symbols.
         chars.AddRange(GetUnicodeCharsInRange(0x2605, 0x2606));
