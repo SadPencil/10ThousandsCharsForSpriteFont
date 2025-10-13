@@ -219,9 +219,12 @@ internal static class Program {
         // 24. Format characters (skipped)
         // 25. Deprecated (skipped)
 
-        // Enclosed CJK Letters and Months. Only includes 3220 -- 325F and range 3280 -- 32FE, so Hangul characters are excluded.
-        chars.AddRange(GetUnicodeCharsInRange(0x3220, 0x325F));
-        chars.AddRange(GetUnicodeCharsInRange(0x3280, 0x32FE));
+        //// Enclosed CJK Letters and Months. Only includes 3220 -- 325F and range 3280 -- 32FE, so Hangul characters are excluded.
+        //chars.AddRange(GetUnicodeCharsInRange(0x3220, 0x325F));
+        //chars.AddRange(GetUnicodeCharsInRange(0x3280, 0x32FE));
+
+        // Enclosed CJK Letters and Months. Only includes GB2312 characters: ㈠ (U+3220), ㈡ (U+3221), ㈢ (U+3222), ㈣ (U+3223), ㈤ (U+3224), ㈥ (U+3225), ㈦ (U+3226), ㈧ (U+3227), ㈨ (U+3228), ㈩ (U+3229)
+        chars.AddRange(GetUnicodeCharsInRange(0x3220, 0x3229));
 
         // Number Forms. 2150 -- 218B. Only includes 2160--216B and 2170--217F
         chars.AddRange(GetUnicodeCharsInRange(0x2160, 0x216B));
