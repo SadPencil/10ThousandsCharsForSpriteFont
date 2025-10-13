@@ -258,8 +258,8 @@ internal static class Program {
         // Spacing Modifier Letters. 02B0–02FF. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x02B0, 0x02FF));
 
-        // Mathematical Operators. 2200–22FF. Includes all.
-        chars.AddRange(GetUnicodeCharsInRange(0x2200, 0x22FF));
+        // Mathematical Operators. 2200–22FF. Includes 2022-22F1.
+        chars.AddRange(GetUnicodeCharsInRange(0x2200, 0x22F1));
 
         // Geometric Shapes. 25A0–25FF. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x25A0, 0x25FF));
