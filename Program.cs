@@ -261,8 +261,8 @@ internal static class Program {
         // Mathematical Operators. 2200–22FF. Includes 2022-22F1.
         chars.AddRange(GetUnicodeCharsInRange(0x2200, 0x22F1));
 
-        // Geometric Shapes. 25A0–25FF. Includes all.
-        chars.AddRange(GetUnicodeCharsInRange(0x25A0, 0x25FF));
+        // Geometric Shapes. 25A0–25FF. Includes 25A0-25EF.
+        chars.AddRange(GetUnicodeCharsInRange(0x25A0, 0x25EF));
 
         // Enclosed Alphanumerics. 2460–24FF. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x2460, 0x24FF));
