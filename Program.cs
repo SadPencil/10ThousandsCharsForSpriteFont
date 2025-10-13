@@ -261,7 +261,7 @@ internal static class Program {
         // Mathematical Operators. 2200–22FF. Includes 2022-22F1.
         chars.AddRange(GetUnicodeCharsInRange(0x2200, 0x22F1));
 
-        // Geometric Shapes. 25A0–25FF. Includes 25A0-25EF.
+        // Geometric Shapes. 25A0–25FF. Includes 25A0-25EF. (Unicode 2.0)
         chars.AddRange(GetUnicodeCharsInRange(0x25A0, 0x25EF));
 
         // Enclosed Alphanumerics. 2460–24FF. Includes all.
@@ -273,8 +273,8 @@ internal static class Program {
         // Box Drawing. 2500–257F. Includes all.
         chars.AddRange(GetUnicodeCharsInRange(0x2500, 0x257F));
 
-        // Arrows. 2190–21FF. Includes all.
-        chars.AddRange(GetUnicodeCharsInRange(0x2190, 0x21FF));
+        // Arrows. 2190–21FF. Includes 2190--21EA. (Unicode 2.0)
+        chars.AddRange(GetUnicodeCharsInRange(0x2190, 0x21EA));
 
         //// Miscellaneous Technical. 2300–23FF. Includes all.
         //chars.AddRange(GetUnicodeCharsInRange(0x2300, 0x23FF));
