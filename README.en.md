@@ -6,7 +6,6 @@ The following Chinese (Simplified) characters are selected:
 - Characters defined in GB2312-90
 - Characters defined in Tong Yong Gui Fan Han Zi Biao **AND** included in Unicode 1.1
 - General Punctuation (unclassified general punctuation, dashes, quotation marks and apostrophe included, the rest excluded)
-- Enclosed CJK Letters and Months (Hangul excluded)
 - CJK Symbols and Punctuation
 
 It also contains the following characters:
