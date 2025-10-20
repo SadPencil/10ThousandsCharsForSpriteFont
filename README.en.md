@@ -24,6 +24,7 @@ It also contains the following characters:
 - Enclosed Alphanumerics
 - Box Drawing
 - Arrows
+- Bopomofo
 
 To get the list of characters, download the text file in the [Releases](https://github.com/SadPencil/10ThousandsCharsForSpriteFont/releases) page.
 

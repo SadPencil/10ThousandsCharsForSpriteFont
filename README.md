@@ -24,6 +24,7 @@
 - 带圈字母数字
 - 制表符
 - 箭头符号
+- 汉语拼音
 
 字符列表文件可在[发布页面](https://github.com/SadPencil/10ThousandsCharsForSpriteFont/releases)下载获取。
 
