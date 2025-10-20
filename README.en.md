@@ -2,7 +2,7 @@
 
 This repo serves a selected area of Chinese (Simplified) characters as well as other characters frequently used by Chinese people, in order to fit the ~10000 character sprite font limit of the XNA Reach profile.
 
-The following Chinese (Simplified) characters are selected:
+The following Chinese (Simplified) characters (of which there are approximately 8,000 Han characters) are selected:
 - Characters defined in GB2312-90
 - Characters defined in Tong Yong Gui Fan Han Zi Biao **AND** included in Unicode 1.1
 - General Punctuation (unclassified general punctuation, dashes, quotation marks and apostrophe included, the rest excluded)
@@ -24,6 +24,7 @@ It also contains the following characters:
 - Enclosed Alphanumerics
 - Box Drawing
 - Arrows
+- Bopomofo
 
 To get the list of characters, download the text file in the [Releases](https://github.com/SadPencil/10ThousandsCharsForSpriteFont/releases) page.
 
